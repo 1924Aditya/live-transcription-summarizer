@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Live Transcription + Summary</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Live Transcription & Professional Summary</h1>
+
+      <div class="controls">
+        <button id="toggleBtn" class="btn">Start Microphone</button>
+        <div class="option muted">Summaries are generated from the captured text in the Notes Canvas below — press "Capture Transcript" first, then click Summarize.</div>
+      </div>
+
+      <section class="pane">
+        <h2>Live Transcript</h2>
+        <div id="transcript" class="transcript" aria-live="polite"></div>
+      </section>
+
+      <!-- canvas-style note editor (hidden until mic is started) -->
+      <section id="canvasPane" class="pane" style="display:none;">
+        <h2>Notes Canvas</h2>
+        <div id="canvasInfo" class="muted">Use this canvas to gather highlights or paste the live transcript. Save to your Desktop using the button.</div>
+        <textarea id="canvas" placeholder="Type or capture transcripts here..." spellcheck="true"></textarea>
+        <div class="canvas-controls">
+          <button id="captureBtn" class="btn small">Capture Transcript</button>
+          <button id="saveBtn" class="btn small">Save to Desktop</button>
+          <button id="downloadBtn" class="btn small">Download (fallback)</button>
+        </div>
+      </section>
+
+      <section class="pane">
+        <h2>Professional Summary</h2>
+        <div class="summary-controls">
+
+          <!-- ❌ Removed Source dropdown -->
+          <!--
+          <label>Source
+            <select id="summarySource">
+              <option value="local" selected>Local summarizer (offline)</option>
+              <option value="server">Server / LLM (optional)</option>
+            </select>
+          </label>
+          -->
+
+          <label>Type
+            <select id="summaryStyle">
+              <option value="concise">Concise professional paragraph</option>
+              <option value="executive">Executive summary (bulleted)</option>
+              <option value="action">Action-focused (bullets + next steps)</option>
+              <option value="detailed">Detailed (3–5 sentences)</option>
+            </select>
+          </label>
+
+          <!-- ❌ Removed Length dropdown -->
+          <!--
+          <label>Length
+            <select id="summaryLength">
+              <option value="short">Short (1 sentence)</option>
+              <option value="medium" selected>Medium (2–3 sentences)</option>
+              <option value="long">Long (3–6 sentences)</option>
+            </select>
+          </label>
+          -->
+
+          <button id="summarizeBtn" class="btn small">Summarize</button>
+        </div>
+
+        <div id="summary" class="summary"></div>
+
+        <div class="api-area">
+          <p class="muted">
+            Quality-AI summaries running on hf python server
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <p class="muted">Works in modern Chromium-based browsers. This demo uses the Web Speech API for recognition and a local summarizer by default.</p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
